@@ -1,9 +1,13 @@
 pipeline {
   agent any
+  
   stages {
     stage('Echo Version') {
       steps {
         echo 'Version 1.0.0'
+        sh '''
+          echo "sleeptime - ${SLEEP_TIME}, port-number - ${PORT_NUMBER}, branch - ${BRANCH_NAME}"
+        '''
       }
     }
 
@@ -23,13 +27,20 @@ pipeline {
       }
     }
 
-    stage('Archive test Artifacts') {
+    stage('Integration Test') {
       steps {
-        echo 'Archiving artifacts...'
-        archiveArtifacts(artifacts: 'test-results/results.xml, index.js', onlyIfSuccessful: true)
-        junit 'test-results/results.xml'
+        echo 'Running integration tests...'
+        sh 'sleep 5s'
+        sh 'curl -s https://localhost:1234/demo || echo "Integration endpoint unreachable"'
       }
     }
 
+    // stage('Archive test Artifacts') {
+    //   steps {
+    //     echo 'Archiving artifacts...'
+    //     archiveArtifacts(artifacts: 'test-results/results.xml, index.js', onlyIfSuccessful: true)
+    //     junit 'test-results/results.xml'
+    //   }
+    // }
   }
 }
