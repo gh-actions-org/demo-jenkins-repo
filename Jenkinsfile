@@ -32,8 +32,8 @@ pipeline {
     }
     stage('deploy'){
       steps{
-        echo "Your app is running in ${PORT_NUMBER}"
-        echo "sleep ${SLEEP_TIME}"
+        echo "Your app is running in ${params.PORT_NUMBER}"
+        echo "sleep ${params.SLEEP_TIME}"
       }
     }
   }
