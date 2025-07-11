@@ -1,15 +1,12 @@
-// index.js
-
 function greet(name) {
     return `Hello, ${name}!`;
 }
 
-// Only for Node.js test environment
-if (typeof module !== 'undefined') {
-    module.exports = { greet };
+// Only run DOM code when in a browser
+if (typeof document !== 'undefined') {
+    document.getElementById?.('clickButton')?.addEventListener('click', () => {
+        alert('You clicked the button!');
+    });
 }
 
-// DOM interaction (not tested)
-document.getElementById?.('clickButton')?.addEventListener('click', () => {
-    alert('You clicked the button!');
-});
+module.exports = { greet };
