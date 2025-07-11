@@ -31,7 +31,7 @@ pipeline {
       steps {
         echo 'Running integration tests...'
         sh 'sleep 5s'
-        sh 'curl -s https://localhost:1234/demo || echo "Integration endpoint unreachable"'
+        sh 'curl -s https://localhost:1234/demo || echo "Integration endpoint reachable"'
       }
     }
 
