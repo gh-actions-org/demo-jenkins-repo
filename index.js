@@ -1,23 +1,15 @@
-let person = {
-    name: 'Samarth',
-    age: 23,
-    isEmployee: true,
-    address: {
-        city: 'Bangalore',
-        state: 'Karnataka'
-    }
+// index.js
+
+function greet(name) {
+    return `Hello, ${name}!`;
 }
 
-console.log(person.name);
-console.log(person.address.city);
-console.log(person['name']);
-
-
-let company={
-    name: 'DevTools',
-    loc: 'Banglore',
-    employee: ['Abc','Def','Ghi']
+// Only for Node.js test environment
+if (typeof module !== 'undefined') {
+    module.exports = { greet };
 }
 
-console.log(company.name);
-
+// DOM interaction (not tested)
+document.getElementById?.('clickButton')?.addEventListener('click', () => {
+    alert('You clicked the button!');
+});

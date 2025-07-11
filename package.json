@@ -1,0 +1,18 @@
+{
+  "name": "hello-world-test",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": ["**/test/**/*.test.js"],
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "test-results", "outputName": "results.xml" }]
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-junit": "^16.0.0"
+  }
+}

@@ -8,22 +8,25 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install & Build') {
             steps {
-                echo 'Building the project...'
-                // Add your build commands here if any, e.g., npm run build or mvn package
+                echo 'Installing dependencies...'
+                sh 'npm install'
             }
         }
-        
+
         stage('Unit Test') {
             steps {
-                script {
-                    for (int i = 1; i <= 10; i++) {
-                        echo "Running test iteration ${i}"
-                        sleep 1
-                    }
-                }
-                sh 'echo Running unit tests...'
+                echo 'Running unit tests...'
+                sh 'npm test'
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                echo 'Archiving artifacts...'
+                archiveArtifacts artifacts: 'test-results/results.xml, index.js', onlyIfSuccessful: true
+                junit 'test-results/results.xml'
             }
         }
     }
