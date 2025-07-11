@@ -30,6 +30,11 @@ pipeline {
         junit 'test-results/results.xml'
       }
     }
-
+    stage('deploy'){
+      steps{
+        echo "Your app is running in ${PORT_NUMBER}"
+        echo "sleep ${SLEEP_TIME}"
+      }
+    }
   }
 }
