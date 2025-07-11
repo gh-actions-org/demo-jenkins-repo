@@ -5,9 +5,7 @@ pipeline {
     stage('Echo Version') {
       steps {
         echo 'Version 1.0.0'
-        sh '''
-          echo "sleeptime - ${SLEEP_TIME}, port-number - ${PORT_NUMBER}, branch - ${BRANCH_NAME}"
-        '''
+        sh "echo sleeptime - ${SLEEP_TIME}, port-number - ${PORT_NUMBER}, branch - ${BRANCH_NAME}"
       }
     }
 
@@ -30,8 +28,8 @@ pipeline {
     stage('Integration Test') {
       steps {
         echo 'Running integration tests...'
-        sh 'sleep 5s'
-        sh 'curl -s https://localhost:1234/demo || echo "Integration endpoint reachable"'
+        sh 'sleep ${SLEEP_TIME}'
+        sh "curl -s https://localhost:${PORT_NUMBER}/demo || echo 'Integration endpoint is reachable'"
       }
     }
 
