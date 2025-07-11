@@ -1,20 +1,29 @@
 pipeline {
     agent any
+
     stages {
-        stage('Hello') {
+        stage('Echo Version') {
             steps {
-                echo 'Hello World'
+                echo 'Version 1.0.0'
             }
         }
-        stage('Unit test'){
-            steps{
-                script{
-                    for (int i=1; i<60; i++ ){
-                        echo "${i+1}"
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                // Add your build commands here if any, e.g., npm run build or mvn package
+            }
+        }
+        
+        stage('Unit Test') {
+            steps {
+                script {
+                    for (int i = 1; i <= 10; i++) {
+                        echo "Running test iteration ${i}"
                         sleep 1
                     }
                 }
-                sh 'echo runiing unit test'
+                sh 'echo Running unit tests...'
             }
         }
     }
